@@ -1,0 +1,104 @@
+  
+<?php
+if(isset($_GET["t"])){
+	if($_GET["t"]=="regiao"){
+		
+		$colunas = array(   "id_regiao as ID","Nome_regiao as 'Região'");				
+				$t[0][0] = "regiao";
+				$t[0][1] = null;
+	}
+	
+	else if($_GET["t"]=="pais"){
+		
+		$colunas = array(   "id_pais as ID",
+									"Nome_pais as 'País'",
+									"Nome_regiao as 'Região'");				
+				$t[0][0] = "pais";
+				$t[0][1] = "regiao";
+	}
+	
+	else if($_GET["t"]=="localizacao"){
+		
+		$colunas = array(   "id_localizacao as ID",
+									"ENDERECO as 'ENDEREÇO'",
+									"CEP as 'CEP'",
+									"CIDADE as 'CIDADE'",
+									"ESTADO as 'ESTADO'",
+									"NOME_PAIS as 'PAÍS'",
+									"NOME_REGIAO as 'REGIÃO'"
+									);				
+				$t[0][0] = "localizacao";
+				$t[0][1] = "pais";
+				$t[1][0] = "pais";
+				$t[1][1] = "regiao";
+	}
+	
+	else if($_GET["t"]=="funcao"){
+		
+		$colunas = array(   "id_funcao as ID",
+							"titulo_funcao as 'Função'",
+							"salario_minimo as 'Salário Mínimo'",
+							"salario_maximo as 'Salário Máximo'");				
+				$t[0][0] = "funcao";
+				$t[0][1] = null;
+	}
+	
+	else if($_GET["t"]=="funcionario"){
+		
+		$colunas = array(  "funcionario.id_funcionario as ID",						   
+							"funcionario.nome as 'NOME'",
+							"funcionario.sobrenome as 'SOBRENOME'",
+							"funcionario.EMAIL as 'EMAIL'",
+							"funcionario.TELEFONE as 'TELEFONE'",
+							"funcionario.DATA_CONTRATACAO as 'DATA CONTRATAÇÃO'",
+							"funcionario.SALARIO as 'SALÁRIO'",
+							"funcionario.COMISSAO as 'COMISSÃO'",
+							"funcao.TITULO_FUNCAO as 'FUNÇÃO'",
+							"gerente.nome as 'NOME GERENTE'"
+							);				
+				$t[0][0] = "funcionario";
+				$t[0][1] = "gerente";
+				$t[1][0] = "funcionario";
+				$t[1][1] = "departamento";
+				$t[2][0] = "funcionario";
+				$t[2][1] = "funcao";
+
+
+	}	
+	else if($_GET["t"]=="departamento"){
+			$colunas = array(  	   "id_departamento as ID",
+									"nome_departamento AS 'Nome do Departamento'",
+									"endereco"
+							);
+				
+				$t[0][0] = "departamento";
+				$t[0][1] = "localizacao";
+	}
+	else if($_GET["t"]=="departamento"){
+		$colunas = array(  	   "id_departamento as ID",
+								"nome_departamento AS 'Nome do Departamento'",
+								"endereco"
+						);
+			
+			$t[0][0] = "departamento";
+			$t[0][1] = "localizacao";
+	}
+	else if($_GET["t"]=="historico_funcoes"){
+		$colunas = array(  	   "funcionario.id_funcionario as ID",
+								"data_inicial AS 'Data Inicial'",
+								"data_final AS 'Data Final'",
+								"funcao.id_funcao AS 'Função'",
+								"departamento.id_departamento AS 'Departamento'",
+								
+						);
+			
+			$t[0][0] = "historico_funcoes";
+			$t[0][1] = "funcionario";
+			$t[1][0] = "historico_funcoes";
+			$t[1][1] = "departamento";
+			$t[2][0] = "historico_funcoes";
+			$t[2][1] = "funcao";
+	
+    }
+}
+?>
